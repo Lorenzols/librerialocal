@@ -1,6 +1,17 @@
 var mongoose = require("mongoose");
 
-var mongoDB = process.env.MONGODB_URI_PROD;
+if (process.env.NODE_ENV === 'development') {
+
+        var mongoDB = process.env.MONGODB_URI_DEV;
+        console.log('DEVELOPMENT ENVIROREMENT');
+} else {
+
+        var mongoDB = process.env.MONGODB_URI_PROD;
+        console.log('PRODUCTION ENVIROREMENT');
+
+}
+
+
 
 mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology:true});
 
